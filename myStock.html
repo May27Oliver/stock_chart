@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stock Research</title>
+    <link rel="stylesheet" href="/style/style.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="text-line">
+                <input type="text" class="neu-input" v-model="stock_no" stock-no='stock_no' placeholder="請輸入欲查詢的股票代號">
+                <div class="send-stock-no" @click="search_stock()">送出</div>
+            </div>
+            <!--  -->
+            <stock-box :stock-no="stock_num" v-for="(stock_num, key) in stock_list" ref="profo"></stock-box><!--ref為app要定位component位置所用的屬性，有了這個屬性便可在app內調用component內的function與變數-->
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script type="text/x-template" id="stock-box">
+        <div class="neu-outter-box">
+            <div class="neu-inner-box">
+                <div class="neu-text-box">
+                    <div class="neu-title">{{stock_title}}</div>
+                </div>
+                <div class="neu-text-box">
+                    <div class="input-value">
+                        <input class="neu-input" type="text" placeholder="請輸入購入金額">
+                    </div>
+                </div>
+                <div class="stock-table" :class="[chartNum]"></div>
+            </div>    
+        </div>
+    </script>
+    <script src="js/Vue.js"></script>
+    <script src="js/D3.js"></script>
+    
+</body>
+</html>
